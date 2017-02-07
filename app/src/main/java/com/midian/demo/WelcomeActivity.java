@@ -3,7 +3,10 @@ package com.midian.demo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Window;
+
+import com.apkfuns.logutils.LogUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,5 +31,16 @@ public class WelcomeActivity extends Activity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN
+                && event.getRepeatCount() == 0) {
+            LogUtils.e("dispatchKeyEvent");
+            return true;
+        }
+        return super.dispatchKeyEvent(event);
     }
 }
