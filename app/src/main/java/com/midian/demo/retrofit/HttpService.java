@@ -2,6 +2,7 @@ package com.midian.demo.retrofit;
 
 
 import com.midian.demo.NewsBean;
+import com.midian.demo.WeChatBean;
 
 import java.util.Map;
 
@@ -15,7 +16,10 @@ import rx.Observable;
 
 public interface HttpService {
 
-    @GET("index")
+    @GET("toutiao/index")
     Observable<HttpResult<NewsBean>> getNews(@QueryMap Map<String, String> options);
+
+    @GET("weixin/query")
+    Observable<HttpResult<WeChatBean>> getWeChat(@QueryMap Map<String, String> options);
 
 }

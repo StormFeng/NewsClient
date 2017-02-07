@@ -4,6 +4,7 @@ package com.midian.demo.retrofit;
 import com.apkfuns.logutils.LogUtils;
 import com.midian.demo.NewsBean;
 import com.midian.demo.TestBean;
+import com.midian.demo.WeChatBean;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +25,8 @@ import rx.schedulers.Schedulers;
 
 public class HttpMethods {
     public static final String KEY = "a407a740e1e2a7f0ac0f1bf7f21280b0";
-    public static final String BASE_URL = "http://v.juhe.cn/toutiao/";
+    public static final String WECHATKEY = "6137d567e4bb6d3f07f87c2d088f2b7b";
+    public static final String BASE_URL = "http://v.juhe.cn/";
     private static int DEFAULT_TIMEOUT = 5;
     private Retrofit retrofit;
     private HttpService httpService;
@@ -83,4 +85,12 @@ public class HttpMethods {
         toSubscribe(observable,subscriber);
     }
 
+    public void getWeChat(Subscriber<WeChatBean> subscriber,String pno){
+        Map<String,String> map=new HashMap<>();
+        map.put("key",WECHATKEY);
+        map.put("pno",pno);
+        Observable<WeChatBean> observable = httpService.getWeChat(map)
+                .map(new HttpResultFunc<WeChatBean>());
+        toSubscribe(observable,subscriber);
+    }
 }

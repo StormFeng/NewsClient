@@ -36,7 +36,7 @@ public class FragmentTab9 extends Fragment {
         View v = inflater.inflate(R.layout.fragment_net, null);
         ButterKnife.bind(this, v);
         HttpMethods.getInstance().getNews(new NewsSubscriber(), "caijing");
-        adapterNews=new AdapterNews(getContext(),data);
+        adapterNews=new AdapterNews(getContext(),data,"财经");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapterNews);
         swipeRefreshLayout.setOnRefreshListener(listener);

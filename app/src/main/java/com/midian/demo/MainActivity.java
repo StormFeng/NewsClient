@@ -6,12 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
 import com.midian.demo.retrofit.HttpMethods;
@@ -44,6 +46,8 @@ public class MainActivity extends FragmentActivity {
     private Fragment mFragment;
     private FragmentNews fragmentNews;
     private FragmentArticle fragmentArticle;
+    private long waitTime = 2000;
+    private long touchTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,5 +109,22 @@ public class MainActivity extends FragmentActivity {
             ivTab2.setImageResource(R.mipmap.article_y);
             tvTab2.setTextColor(Color.parseColor("#ff6666"));
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if (event.getAction() == KeyEvent.ACTION_DOWN && KeyEvent.KEYCODE_BACK == keyCode) {
+                long currentTime = System.currentTimeMillis();
+                if ((currentTime - touchTime) >= waitTime) {
+                    Toast.makeText(this,"再按一次退出",Toast.LENGTH_SHORT).show();
+                    touchTime = currentTime;
+                } else {
+                    finish();
+                }
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

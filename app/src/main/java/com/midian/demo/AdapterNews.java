@@ -34,10 +34,12 @@ import rx.schedulers.Schedulers;
 public class AdapterNews extends BaseQuickAdapter<NewsBean.DataBean> {
 
     private Context context;
+    private String title;
 
-    public AdapterNews(Context context,List<NewsBean.DataBean> data) {
+    public AdapterNews(Context context,List<NewsBean.DataBean> data,String title) {
         super(R.layout.item,data);
         this.context=context;
+        this.title=title;
     }
 
     @Override
@@ -57,6 +59,7 @@ public class AdapterNews extends BaseQuickAdapter<NewsBean.DataBean> {
                 bundle.putString("url",dataBean.getUrl());
                 Intent intent = new Intent(context, NewsDetailActivity.class);
                 intent.putExtra("url",dataBean.getUrl());
+                intent.putExtra("title",title);
                 context.startActivity(intent);
             }
         });
