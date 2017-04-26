@@ -1,4 +1,4 @@
-package com.midian.demo;
+package com.midian.demo.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,13 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.apkfuns.logutils.LogUtils;
-import com.midian.demo.retrofit.HttpMethods;
+import com.midian.demo.R;
+import com.midian.demo.fragment.FragmentArticle;
+import com.midian.demo.fragment.FragmentNews;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Subscriber;
 
 
 public class MainActivity extends FragmentActivity {

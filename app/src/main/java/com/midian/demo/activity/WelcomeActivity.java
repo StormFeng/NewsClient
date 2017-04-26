@@ -1,4 +1,4 @@
-package com.midian.demo;
+package com.midian.demo.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.Window;
 
 import com.apkfuns.logutils.LogUtils;
+import com.midian.demo.R;
 
 import java.util.concurrent.TimeUnit;
 

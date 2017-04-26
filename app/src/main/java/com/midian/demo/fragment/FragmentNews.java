@@ -1,8 +1,7 @@
-package com.midian.demo;
+package com.midian.demo.fragment;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -10,6 +9,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.midian.demo.R;
+
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -34,7 +36,8 @@ public class FragmentNews extends Fragment {
     ViewPager viewPager;
 
     CommonNavigator commonNavigator;
-    List<String> mDataList=new ArrayList<>();
+    String[] mData={"头条","社会","国内","国际","娱乐","体育","军事","科技","财经","时尚"};
+    String[] mParams={"top","shehui","guonei","guoji","yuele","tiyu","junshi","keji","caijing","shishang"};
     List<Fragment> fragmentList=new ArrayList<>();
 
     @Override
@@ -47,26 +50,9 @@ public class FragmentNews extends Fragment {
     }
 
     private void init() {
-        mDataList.add("头条");
-        mDataList.add("社会");
-        mDataList.add("国内");
-        mDataList.add("国际");
-        mDataList.add("娱乐");
-        mDataList.add("体育");
-        mDataList.add("军事");
-        mDataList.add("科技");
-        mDataList.add("财经");
-        mDataList.add("时尚");
-        fragmentList.add(new FragmentTab1());
-        fragmentList.add(new FragmentTab2());
-        fragmentList.add(new FragmentTab3());
-        fragmentList.add(new FragmentTab4());
-        fragmentList.add(new FragmentTab5());
-        fragmentList.add(new FragmentTab6());
-        fragmentList.add(new FragmentTab7());
-        fragmentList.add(new FragmentTab8());
-        fragmentList.add(new FragmentTab9());
-        fragmentList.add(new FragmentTab10());
+        for (int i = 0; i < mData.length; i++) {
+            fragmentList.add(new FragmentTab(mParams[i],mData[i]));
+        }
         viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -85,7 +71,7 @@ public class FragmentNews extends Fragment {
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
             public int getCount() {
-                return mDataList.size();
+                return mData.length;
             }
 
             @Override
@@ -94,7 +80,7 @@ public class FragmentNews extends Fragment {
                 simplePagerTitleView.setNormalColor(Color.parseColor("#333333"));
                 simplePagerTitleView.setSelectedColor(Color.parseColor("#FFFFFF"));
                 simplePagerTitleView.setTextSize(18);
-                simplePagerTitleView.setText(mDataList.get(i));
+                simplePagerTitleView.setText(mData[i]);
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

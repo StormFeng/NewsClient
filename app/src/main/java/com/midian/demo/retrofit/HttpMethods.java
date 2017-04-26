@@ -1,10 +1,8 @@
 package com.midian.demo.retrofit;
 
 
-import com.apkfuns.logutils.LogUtils;
-import com.midian.demo.NewsBean;
-import com.midian.demo.TestBean;
-import com.midian.demo.WeChatBean;
+import com.midian.demo.bean.NewsBean;
+import com.midian.demo.bean.WeChatBean;
 
 import java.util.HashMap;
 import java.util.Map;

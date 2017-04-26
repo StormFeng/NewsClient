@@ -1,4 +1,4 @@
-package com.midian.demo;
+package com.midian.demo.bean;
 
 import java.util.List;
 

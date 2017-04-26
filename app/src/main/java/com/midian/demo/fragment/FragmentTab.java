@@ -1,4 +1,4 @@
-package com.midian.demo;
+package com.midian.demo.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.midian.demo.bean.NewsBean;
+import com.midian.demo.R;
+import com.midian.demo.adapter.AdapterNews;
 import com.midian.demo.retrofit.BaseSubcriber;
 import com.midian.demo.retrofit.HttpMethods;
 
@@ -22,7 +25,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/1/19 0019.
  */
 
-public class FragmentTab7 extends Fragment {
+public class FragmentTab extends Fragment {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.swipeRefreshLayout)
@@ -30,13 +33,20 @@ public class FragmentTab7 extends Fragment {
 
     private List<NewsBean.DataBean> data=new ArrayList<>();
     private AdapterNews adapterNews;
+    private String param;
+    private String title;
+
+    public FragmentTab(String param, String title) {
+        this.param = param;
+        this.title = title;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_net, null);
         ButterKnife.bind(this, v);
-        HttpMethods.getInstance().getNews(new NewsSubscriber(), "junshi");
-        adapterNews=new AdapterNews(getContext(),data,"军事");
+        HttpMethods.getInstance().getNews(new NewsSubscriber(), param);
+        adapterNews=new AdapterNews(getContext(),data,title);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapterNews);
         swipeRefreshLayout.setOnRefreshListener(listener);
@@ -46,7 +56,7 @@ public class FragmentTab7 extends Fragment {
     SwipeRefreshLayout.OnRefreshListener listener=new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            HttpMethods.getInstance().getNews(new NewsSubscriber(), "junshi");
+            HttpMethods.getInstance().getNews(new NewsSubscriber(), param);
         }
     };
 

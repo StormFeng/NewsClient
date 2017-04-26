@@ -1,16 +1,21 @@
-package com.midian.demo;
+package com.midian.demo.activity;
 
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
+import com.midian.demo.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,7 +25,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/1/19 0019.
  */
 
-public class WeChatDetailActivity extends Activity {
+public class NewsDetailActivity extends Activity {
     @BindView(R.id.webview)
     WebView webview;
     @BindView(R.id.iv_Back)
@@ -47,9 +52,8 @@ public class WeChatDetailActivity extends Activity {
             public void onPageFinished(WebView view, String url) {
             }
         });
-        webview.getSettings().setJavaScriptEnabled(true);//启用js
+//        webview.getSettings().setJavaScriptEnabled(true);//启用js
         webview.canGoBack();
-        LogUtils.e(url);
         webview.loadUrl(url);
     }
 

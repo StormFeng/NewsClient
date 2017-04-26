@@ -1,21 +1,19 @@
-package com.midian.demo;
+package com.midian.demo.adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.apkfuns.logutils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.midian.demo.R;
+import com.midian.demo.bean.WeChatBean;
+import com.midian.demo.activity.WeChatDetailActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

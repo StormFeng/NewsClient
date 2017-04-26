@@ -1,4 +1,4 @@
-package com.midian.demo;
+package com.midian.demo.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.midian.demo.R;
+import com.midian.demo.bean.WeChatBean;
+import com.midian.demo.adapter.AdapterWeChat;
 import com.midian.demo.retrofit.BaseSubcriber;
 import com.midian.demo.retrofit.HttpMethods;
 
